@@ -46,7 +46,7 @@
                 <div class="app-stat p-3">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <div class="stat-number">{{ \App\Models\Applicant::count() }}</div>
+                            <div class="stat-number  arabic-numbers">{{ \App\Models\Applicant::count() }}</div>
                             <div class="stat-label">إجمالي المتقدمين</div>
                         </div>
                         <div class="fs-2">📋</div>
@@ -57,7 +57,7 @@
                 <div class="app-stat p-3">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <div class="stat-number">{{ \App\Models\User::count() }}</div>
+                            <div class="stat-number arabic-numbers">{{ \App\Models\User::count() }}</div>
                             <div class="stat-label">إجمالي المستخدمين</div>
                         </div>
                         <div class="fs-2">👥</div>
@@ -68,7 +68,7 @@
                 <div class="app-stat p-3">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <div class="stat-number">{{ \App\Models\Degree::count() }}</div>
+                            <div class="stat-number arabic-numbers">{{ \App\Models\Degree::count() }}</div>
                             <div class="stat-label">الدرجات المعرفة</div>
                         </div>
                         <div class="fs-2">🎓</div>
@@ -91,4 +91,17 @@
     </div>
 @endguest
 
+@endsection
+@section('scripts')
+<script>
+function toArabicIndicNumbers(str) {
+    return str.replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".arabic-numbers").forEach(el => {
+        el.textContent = toArabicIndicNumbers(el.textContent);
+    });
+});
+</script>
 @endsection

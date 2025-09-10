@@ -112,7 +112,7 @@
         <!-- Logo and Ministry Header -->
         <div style="text-align: center; margin-bottom: 10px;">
     <img src="/2324.jpg" alt="وزارة الداخلية - مديرية التدريب والتاهيل" style="position: absolute; top: 5px; left: 0; width: 100%; height: 200px;; object-fit:fill ; z-index: 1; background-color: white;">
-   
+
         <!-- معلومات إضافية -->
         <table class="info-table" style="width: 100%; margin-bottom: 10px; margin-top:210px; margin-right:10px; border: none;">
             <tr>
@@ -125,11 +125,11 @@
             </tr>
             <tr>
                 <td style="border: none; padding: 1px; font-weight: bold; font-size: 10px;">عدد المقاعد:</td>
-                <td style="border: none; padding: 1px; font-size: 10px;">{{ $seatCount ?? 'غير محدد' }}</td>
+                <td style="border: none; padding: 1px; font-size: 10px;" class="arabic-numbers">{{ $seatCount ?? 'غير محدد' }}</td>
             </tr>
             <tr>
                 <td style="border: none; padding: 1px; font-weight: bold; font-size: 10px;">عددالمتفدمين:</td>
-                <td style="border: none; padding: 1px; font-size: 10px;">{{ count($rows) }}</td>
+                <td style="border: none; padding: 1px; font-size: 10px;" class="arabic-numbers">{{ count($rows) }}</td>
             </tr>
         </table>
     </div>
@@ -143,20 +143,22 @@
             </button>
         </div>
 
-        <table style="margin-right:1px;">
+        <table style="margin-right:1px;" >
             <thead>
                 <tr>
-                    <th>التسلسل</th>
+                    <th class="arabic-numbers">التسلسل</th>
                     <th>الرتبة</th>
                     <th>الاسم</th>
                     <th>الوكالة</th>
                     <th>الشهادة الحاصل عليها</th>
                     <th>الاختصاص</th>
+                    <th>قناة التقديم</th>
                     <th>الدرجة العلمية المطلوبة</th>
                     <th>الاختصاص المطلوب</th>
-                    <th>قناة التقديم</th>
-                    <th>المعدل</th>
+                     <th>مدة الاجازة</th>
+                    <th >المعدل</th>
                     <th>ذوي الشهداء</th>
+
                     <th>الملاحظات</th>
                 </tr>
             </thead>
@@ -164,16 +166,17 @@
                 @php $counter = 1; @endphp
                 @foreach($rows as $r)
                     <tr>
-                        <td>{{ $counter++ }}</td>
+                        <td style="border: 1px solid #333; padding: 2px; font-size: 9px;" class="arabic-numbers">{{ $counter++ }}</td>
                         <td>{{ $r->rank?->name_rank ?? '' }}</td>
                         <td>{{ $r->first_name }} {{ $r->second_name }} {{ $r->last_name }}</td>
                         <td>{{ $r->agency?->age_name ?? '' }}</td>
                         <td>{{ $r->degree?->name_degree ?? '' }}</td>
                         <td>{{ $r->specialization ?? '' }}</td>
+                        <td>{{ $r->channel?->name_chanel ?? '' }}</td>
                         <td>{{ $r->requestedDegree?->name_degree ?? '' }}</td>
                         <td>{{ $r->requestedSpecialization?->name_spcific ?? '' }}</td>
-                        <td>{{ $r->channel?->name_chanel ?? '' }}</td>
-                        <td>{{ $r->average ?? '' }}</td>
+                        <td style="border: 1px solid #333; padding: 2px; font-size: 9px;" class="arabic-numbers">{{ $r->ejaza?->name_ejaza ?? '' }}</td>
+                        <td style="border: 1px solid #333; padding: 2px; font-size: 9px;" class="arabic-numbers">{{ $r->average ?? '' }}</td>
                         <td>{{ $r->is_martyr_relative ? 'نعم' : 'لا' }}</td>
                         <td>{{ $r->notes ?? '' }}</td>
                     </tr>
@@ -209,29 +212,31 @@
                 <tr>
                     <td style="border: 1px solid #333; padding: 2px; font-size: 9px;">عضو لجنة منح الاجازات الدراسية<br>العميد الدكتور رافد عبد الواحد مهاوي</td>
                     <td style="border: 1px solid #333; padding: 2px;"></td>
-                    <td style="border: 1px solid #333; padding: 2px; font-size: 9px;"class="arabic-numbers">...../..../2025 </td>
+                    <td style="border: 1px solid #333; padding: 2px; font-size: 9px;" class="arabic-numbers">...../..../2025 </td>
                 </tr>
                     <td style="border: 1px solid #333; padding: 2px; font-size: 9px;">عضو لجنة منح الاجازات الدراسية<br>العميد علي كاطع حاجم حسن</td>
                     <td style="border: 1px solid #333; padding: 2px;"></td>
-                    <td style="border: 1px solid #333; padding: 2px; font-size: 9px;"class="arabic-numbers">   ...../....../2025  </td>
+                    <td style="border: 1px solid #333; padding: 2px; font-size: 9px;" class="arabic-numbers">   ...../....../2025  </td>
                 </tr>
                     <td style="border: 1px solid #333; padding: 2px; font-size: 9px;">عضو لجنة منح الاجازات الدراسية<br>العميد المهندس داود سلمان عذيب</td>
                     <td style="border: 1px solid #333; padding: 2px;"></td>
-                    <td style="border: 1px solid #333; padding: 2px; font-size: 9px;"class="arabic-numbers">   ...../....../2025  </td>
+                    <td style="border: 1px solid #333; padding: 2px; font-size: 9px;" class="arabic-numbers">   ...../....../2025  </td>
                 </tr>
                    <td style="border: 1px solid #333; padding: 2px; font-size: 9px;">عضو لجنة منح الاجازات الدراسية<br>ممثل وكالة الوزارة للشؤون الادارية والمالية<br>اللواء الحقوقي فاضل فرحان صالح</td>
                     <td style="border: 1px solid #333; padding: 2px;"></td>
-                    <td style="border: 1px solid #333; padding: 2px; font-size: 9px;"class="arabic-numbers">   ...../....../2025  </td>
+                    <td style="border: 1px solid #333; padding: 2px; font-size: 9px;" class="arabic-numbers">   ...../....../2025  </td>
                 </tr>
                 <td style="border: 1px solid #333; padding: 2px; font-size: 9px;">رئيس لجنة منح الاجازات الدراسية<br>اللواء الحقوقي صباح حوشي محمد</td>
                     <td style="border: 1px solid #333; padding: 2px;"></td>
-                    <td style="border: 1px solid #333; padding: 2px; font-size: 9px;"class="arabic-numbers">   ...../....../2025  </td>
+                    <td style="border: 1px solid #333; padding: 2px; font-size: 9px;" class="arabic-numbers">   ...../....../2025  </td>
                 </tr>
-                   
+
             </tbody>
         </table>
     </div>
 </body>
+
+@section('scripts')
 <script>
 function toArabicIndicNumbers(str) {
     return str.replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
@@ -243,5 +248,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 </script>
+@endsection
 
 </html>

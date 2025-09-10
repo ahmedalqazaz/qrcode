@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+
     <meta charset="UTF-8">
     <title>تصدير PDF للمتقدم</title>
     <style>
@@ -41,17 +42,7 @@
                 .applicant-section:first-child {
                     page-break-before: avoid;
                 }
-                .applicant-number {
-                    font-size: 10px;
-                    font-weight: bold;
-                    margin-bottom: 0;
-                    color: #2c3e50;
-                    background: #f8f9fa;
-                    padding: 0 3px;
-                    border-radius: 2px;
-                    display: inline-block;
-                    border: 1px solid #3498db;
-                }
+
                 .title {
                     text-align: center;
                     font-size: 12px;
@@ -106,13 +97,6 @@
 
 
                 }
-                .arabic-numbers {
-                    font-family: "Courier New", monospace;
-                    font-weight: bold;
-                    color: #2a1b19ff;
-                    text-align: center;
-                    font-size: 10px;
-                }
                 .label-td {
                     background: #d3d3d3;
 
@@ -160,7 +144,7 @@
         <h2 style="font-family: 'Dubai', Arial, sans-serif; font-weight: bold; font-size: 18px;">وزارة الداخلية - مديرية التدريب والتاهيل</h2>
         <h1 style="font-family: 'Dubai', Arial, sans-serif; font-weight: bold; font-size: 16px;">استمارة المفاضلة</h1>
     </div>
-    <table>
+    <table >
         <thead>
             <tr>
                 <th colspan="2">البيانات الشخصية والوظيفية</th>
@@ -171,7 +155,7 @@
         <tbody>
             <tr>
                 <td class="label-td">الرقم الاحصائي</td>
-                <td>{{ $applicant->statistical_number ?? '' }}</td>
+                <td class="arabic-numbers">{{ $applicant->statistical_number ?? '' }}</td>
                 <td class="label-td">الدرجة العلمية الحاصل عليها</td>
                 <td>{{ $applicant->degree?->name_degree ?? '' }}</td>
                 <td class="label-td">الدرجة العلمية المطلوبة</td>
@@ -205,13 +189,13 @@
                 <td class="label-td">المديرية العامة</td>
                 <td>{{ $applicant->directorate ?? '' }}</td>
                 <td class="label-td">المعدل</td>
-                <td>{{ $applicant->average ?? '' }}</td>
+                <td class="arabic-numbers">{{ $applicant->average ?? '' }}</td>
                 <td class="label-td">اسم الكلية</td>
                 <td>{{ $applicant->requested_college ?? '' }}</td>
             </tr>
             <tr>
                 <td class="label-td">تاريخ الولادة</td>
-                <td>{{ $applicant->birth_date ?? '' }}</td>
+                <td class="arabic-numbers">{{ $applicant->birth_date ?? '' }}</td>
                 <td class="label-td">بلد الدراسة</td>
                 <td>{{ $applicant->degree_country ?? '' }}</td>
                 <td class="label-td">بلد الدراسة</td>
@@ -219,9 +203,9 @@
             </tr>
             <tr>
                 <td class="label-td">الخدمة الفعلية في الوظيفة</td>
-                <td>{{ $applicant->service_years ?? '' }}</td>
+                <td class="arabic-numbers">{{ $applicant->service_years ?? '' }}</td>
                 <td class="label-td">عدد سنوات الخدمة بعد اخر شهادة</td>
-                <td>{{ $applicant->service_years_after_last_degree ?? '' }}</td>
+                <td class="arabic-numbers">{{ $applicant->service_years_after_last_degree ?? '' }}</td>
                 <td class="label-td">مدة الاجازة المطلوبة</td>
                 <td>{{ $applicant->ejaza?->name_ejaza ?? '' }}</td>
             </tr>
@@ -276,3 +260,14 @@
     <button class="print-button" onclick="window.print()">طباعة PDF</button>
 </body>
 </html>
+<script>
+function toArabicIndicNumbers(str) {
+    return str.replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".arabic-numbers").forEach(el => {
+        el.textContent = toArabicIndicNumbers(el.textContent);
+    });
+});
+</script>

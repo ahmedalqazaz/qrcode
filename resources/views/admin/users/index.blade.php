@@ -11,7 +11,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>#</th>
+                <th>التسلسل</th>
                 <th>الاسم</th>
                 <th>البريد</th>
                 <th>الصلاحية</th>
@@ -21,7 +21,7 @@
         <tbody>
             @foreach($users as $user)
             <tr>
-                <td>{{ $user->id }}</td>
+                <td class="arabic-numbers">{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->role ?? 'user' }}</td>
@@ -42,4 +42,18 @@
 
     {{ $users->links() }}
 </div>
+@endsection
+
+@section('scripts')
+<script>
+function toArabicIndicNumbers(str) {
+    return str.replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".arabic-numbers").forEach(el => {
+        el.textContent = toArabicIndicNumbers(el.textContent);
+    });
+});
+</script>
 @endsection

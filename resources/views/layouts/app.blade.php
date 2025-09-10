@@ -44,7 +44,7 @@
 </div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4" style="margin-top: 130px">
   <div class="container-fluid">
-    
+
     <button class="btn btn-outline-secondary ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
       &#9776;
     </button>
@@ -52,7 +52,7 @@
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav ms-auto">
       @auth
-    
+
       @else
         <li class="nav-item">
           <a class="btn btn-sm btn-primary me-2" href="{{ route('login') }}">دخول</a>
@@ -126,6 +126,6 @@
   @endif
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  @yield('scripts')
 </body>
-</html>
 </html>

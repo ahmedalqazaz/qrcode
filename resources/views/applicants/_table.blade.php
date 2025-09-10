@@ -32,7 +32,7 @@
     <tbody>
         @foreach($applicants as $index => $app)
             <tr>
-                <td><input type="checkbox" class="rowCheckbox" value="{{ $app->id }}"></td>
+                <td class="arabic-numbers" ><input type="checkbox" class="rowCheckbox" value="{{ $app->id }}"></td>
                 <td>{{ ($applicants->currentPage() - 1) * $applicants->perPage() + $loop->iteration }}</td>
                 <td>{{ $app->rank?->name_rank }}</td>
                 <td>{{ $app->first_name }} {{ $app->second_name }} {{ $app->last_name }}</td>
@@ -42,8 +42,8 @@
                 <td>{{ $app->requestedDegree?->name_degree }}</td>
                 <td>{{ $app->requestedSpecialization?->name_spcific }}</td>
                 <td>{{ $app->channel?->name_chanel }}</td>
-                <td>{{ $app->average }}</td>
-                <td>{{ $app->created_at->format('Y-m-d') }}</td>
+                <td class="arabic-numbers">{{ $app->average }}</td>
+                <td class="arabic-numbers">{{ $app->created_at->format('Y-m-d') }}</td>
                 <td>{{ $app->is_martyr_relative ? 'نعم' : 'لا' }}</td>
                 <td>{{ $app->notes }}</td>
                 <td>
@@ -127,8 +127,4 @@
             });
         });
     })();
-</script>
-
-<script>
-    // AJAX pagination links (delegated by index view's rebind function)
 </script>

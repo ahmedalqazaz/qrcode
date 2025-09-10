@@ -46,7 +46,7 @@
         </div>
             <div class="mt-2">
                 <button id="filterBtn" class="btn btn-outline-secondary" type="submit">بحث</button>
-                <span class="ms-3">عدد النتائج: <strong id="resultsCount">{{ $total ?? $applicants->total() }}</strong></span>
+                <span class="ms-3 arabic-numbers">عدد النتائج: <strong id="resultsCount">{{ $total ?? $applicants->total() }}</strong></span>
             </div>
     </form>
     @if(session('success'))
@@ -60,4 +60,18 @@
     <div class="mt-3">
         <a href="{{ route('applicants.exportComparisonForm', request()->query()) }}" class="btn btn-outline-success ms-2">استمارة المفاضلة (Word)</a>
     </div>
+@endsection
+
+@section('scripts')
+<script>
+function toArabicIndicNumbers(str) {
+    return str.replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".arabic-numbers").forEach(el => {
+        el.textContent = toArabicIndicNumbers(el.textContent);
+    });
+});
+</script>
 @endsection

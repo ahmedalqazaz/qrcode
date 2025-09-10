@@ -323,7 +323,7 @@ class DataController extends Controller
         // Log the constructed query for debugging
         Log::info('Constructed PDF Preview Query:', ['sql' => $query->toSql(), 'bindings' => $query->getBindings()]);
 
-        $rows = $query->with(['requestedDegree','requestedSpecialization','channel'])->get();
+        $rows = $query->with(['requestedDegree','requestedSpecialization','channel','ejaza'])->get();
 
         // Check if rows are empty and log a warning
         if ($rows->isEmpty()) {
