@@ -64,6 +64,14 @@ class DataController extends Controller
                     ->orWhere('second_name', 'like', "%{$q}%")
                     ->orWhere('last_name', 'like', "%{$q}%")
                     ->orWhere('statistical_number', 'like', "%{$q}%");
+
+                // Split search query into parts and search each in full name
+                $parts = explode(' ', trim($q));
+                foreach ($parts as $part) {
+                    if (!empty($part)) {
+                        $sub->orWhereRaw("COALESCE(first_name, '') || ' ' || COALESCE(second_name, '') || ' ' || COALESCE(third_name, '') || ' ' || COALESCE(fourth_name, '') || ' ' || COALESCE(last_name, '') LIKE ?", ["%{$part}%"]);
+                    }
+                }
             });
         }
 
@@ -205,6 +213,14 @@ class DataController extends Controller
                     ->orWhere('second_name', 'like', "%{$q}%")
                     ->orWhere('last_name', 'like', "%{$q}%")
                     ->orWhere('statistical_number', 'like', "%{$q}%");
+
+                // Split search query into parts and search each in full name
+                $parts = explode(' ', trim($q));
+                foreach ($parts as $part) {
+                    if (!empty($part)) {
+                        $sub->orWhereRaw("COALESCE(first_name, '') || ' ' || COALESCE(second_name, '') || ' ' || COALESCE(third_name, '') || ' ' || COALESCE(fourth_name, '') || ' ' || COALESCE(last_name, '') LIKE ?", ["%{$part}%"]);
+                    }
+                }
             });
         }
         if ($channel = $request->input('FirstDropdown1')) {
@@ -278,6 +294,14 @@ class DataController extends Controller
                     ->orWhere('second_name', 'like', "%{$q}%")
                     ->orWhere('last_name', 'like', "%{$q}%")
                     ->orWhere('statistical_number', 'like', "%{$q}%");
+
+                // Split search query into parts and search each in full name
+                $parts = explode(' ', trim($q));
+                foreach ($parts as $part) {
+                    if (!empty($part)) {
+                        $sub->orWhereRaw("COALESCE(first_name, '') || ' ' || COALESCE(second_name, '') || ' ' || COALESCE(third_name, '') || ' ' || COALESCE(fourth_name, '') || ' ' || COALESCE(last_name, '') LIKE ?", ["%{$part}%"]);
+                    }
+                }
             });
         }
         if ($channel = $request->input('FirstDropdown1')) {
@@ -366,6 +390,14 @@ class DataController extends Controller
                     ->orWhere('second_name', 'like', "%{$q}%")
                     ->orWhere('last_name', 'like', "%{$q}%")
                     ->orWhere('statistical_number', 'like', "%{$q}%");
+
+                // Split search query into parts and search each in full name
+                $parts = explode(' ', trim($q));
+                foreach ($parts as $part) {
+                    if (!empty($part)) {
+                        $sub->orWhereRaw("COALESCE(first_name, '') || ' ' || COALESCE(second_name, '') || ' ' || COALESCE(third_name, '') || ' ' || COALESCE(fourth_name, '') || ' ' || COALESCE(last_name, '') LIKE ?", ["%{$part}%"]);
+                    }
+                }
             });
         }
         if ($channel = $request->input('FirstDropdown1')) {
@@ -506,8 +538,8 @@ class DataController extends Controller
             </tr>';
             $counter++;
         }
-         
-        
+
+
         $html .= '</table>
           <table class="additional-table" style="margin-top: 5px; width: 100%; border-collapse: collapse; direction: rtl; text-align: right;">
             <thead>
@@ -540,7 +572,7 @@ class DataController extends Controller
                     <td style="border: 1px solid #333; padding: 2px;"></td>
                     <td style="border: 1px solid #333; padding: 2px; font-size: 9px;"class="arabic-numbers">   ...../....../2025  </td>
                 </tr>
-                   
+
             </tbody>
         </table>';
 
