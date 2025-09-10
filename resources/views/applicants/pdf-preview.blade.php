@@ -234,9 +234,7 @@
             </tbody>
         </table>
     </div>
-</body>
 
-@section('scripts')
 <script>
 function toArabicIndicNumbers(str) {
     return str.replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
@@ -248,6 +246,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 </script>
-@endsection
 
+</body>
 </html>
