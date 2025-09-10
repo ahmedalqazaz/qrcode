@@ -57,7 +57,7 @@ class Wordexport extends Controller
         }
 
 
-       
+
 
         // Generate HTML content for Word document with field labels on the right in 3 columns
         $html = '<!DOCTYPE html>
@@ -177,16 +177,16 @@ class Wordexport extends Controller
                 }
                 .label-td {
                     background: #d3d3d3;
-                  
-                    
+
+
                 }
             </style>
         </head>
         <body>';
-        
-    
+
+
         foreach ($rows as $applicant) {
-           
+
             $html .= '</div>
             <div class="applicant-section">
             <table >
@@ -255,7 +255,7 @@ class Wordexport extends Controller
 </tr>
 
                 <tr>
-                   
+
                 <td  colspan="6" style=" padding: 5px;">
                ';
                 $channelCode = $applicant->channel_id;
@@ -263,7 +263,8 @@ class Wordexport extends Controller
                 if ($channelCode == 1) {
                     $customLabel = "ملاحظة:"."<br>"."اصدار امر اداري يتضمن الموافقة على اكمال الدراسة اثناء التوظيف وعلى النفقة الخاصة ومنحه مدة الاجازة المطلوبة استناداً الى قانون رقم 20 لسنة 2020";
                 } elseif ($channelCode == '2') {
-                    $customLabel = "قناة التقديم اجازة دراسية";
+                   $customLabel = "ملاحظة:"."<br>"." اصدار امر اداري يتضمن الموافقة على الاجازة الدراسية استناداً الى قانون رقم 14 لسنة 2009 و قانون تعديل قانون الخدمة المدنية رقم 24 لسنة 1960 وتعليمات رقم 165 لسنة 2011 ونظام رقم 19 لسنة 1988";
+
                 } else {
                     $customLabel = "ملاحظة:".$channelCode;
                 }
