@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <title>معاينة PDF - قائمة المتقدمين</title>
+    <style>
+        body { 
+            font-family: 'ArabicCustom', DejaVu Sans, sans-serif; 
+            direction: rtl; 
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #007bff;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .print-actions {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            direction: rtl;
+            text-align: right;
+        }
+        
+        th, td {
+            border: 1px solid #333;
+            padding: 8px;
+            font-size: 12px;
+            direction: rtl;
+        }
+        
+        th {
+            background: #f0f0f0;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        @media print {
+            .print-actions {
+                display: none;
+            }
+            
+            body {
+                background-color: white;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .header {
+                border-bottom: 2px solid #000;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>قائمة المتقدمين - معاينة قبل الطباعة</h1>
+            <p>عدد السجلات: 6</p>
+        </div>
+        
+        <div class="print-actions">
+            <button class="btn btn-primary" onclick="window.print()">
+                🖨️ طباعة الصفحة
+            </button>
+            <button class="btn btn-secondary" onclick="window.history.back()">
+                ↩️ رجوع
+            </button>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>الاسم</th>
+                    <th>الرتبة</th>
+                    <th>الوكالة</th>
+                    <th>الجنس</th>
+                    <th>الدرجة</th>
+                    <th>المديرية</th>
+                    <th>سنوات الخدمة</th>
+                    <th>التولد</th>
+                    <th>الدرجة العلمية المطلوبة</th>
+                    <th>الاختصاص المطلوب</th>
+                    <th>المعدل</th>
+                </tr>
+            </thead>
+            <tbody>
+                                    <tr>
+                        <td>2</td>
+                        <td>احمد سعد القزاز</td>
+                        <td>رائد</td>
+                        <td>وكالة الوزارة للشؤون الادارية والمالية</td>
+                        <td>ذكر</td>
+                        <td>ماجستير</td>
+                        <td>مديرية التدريب والتاهيل</td>
+                        <td>6</td>
+                        <td>1988-03-24</td>
+                        <td>دكتوراه</td>
+                        <td></td>
+                        <td>88.6</td>
+                    </tr>
+                                    <tr>
+                        <td>4</td>
+                        <td>جعفر علي العنزي</td>
+                        <td>مقدم</td>
+                        <td>وكالة الوزارة للشؤون الادارية والمالية</td>
+                        <td>ذكر</td>
+                        <td>ماجستير</td>
+                        <td>مديرية التدريب والتاهيل</td>
+                        <td>8</td>
+                        <td>2025-07-28</td>
+                        <td>دكتوراه</td>
+                        <td></td>
+                        <td>88</td>
+                    </tr>
+                                    <tr>
+                        <td>5</td>
+                        <td>ضرغام حسين القاري</td>
+                        <td>موظف</td>
+                        <td>وكالة الوزارة للشؤون الادارية والمالية</td>
+                        <td>ذكر</td>
+                        <td>بكالوريوس</td>
+                        <td>مديرية التدريب والتاهيل</td>
+                        <td>15</td>
+                        <td>1987-01-01</td>
+                        <td>ماجستير</td>
+                        <td></td>
+                        <td>59.325</td>
+                    </tr>
+                                    <tr>
+                        <td>7</td>
+                        <td>مصطفى حسين القاري</td>
+                        <td>موظف</td>
+                        <td>وكالة الوزارة للشؤون الادارية والمالية</td>
+                        <td>ذكر</td>
+                        <td>بكالوريوس</td>
+                        <td>مديرية التدريب والتاهيل</td>
+                        <td>15</td>
+                        <td>1987-01-01</td>
+                        <td>ماجستير</td>
+                        <td>تكنولوجيا المعلومات -شبكات</td>
+                        <td>59.325</td>
+                    </tr>
+                                    <tr>
+                        <td>8</td>
+                        <td>علي حسين القاري</td>
+                        <td>موظف</td>
+                        <td>وكالة الوزارة للشؤون الادارية والمالية</td>
+                        <td>ذكر</td>
+                        <td>بكالوريوس</td>
+                        <td>مديرية التدريب والتاهيل</td>
+                        <td>15</td>
+                        <td>1987-01-01</td>
+                        <td>ماجستير</td>
+                        <td>علوم الحياة - ادلة جنائية</td>
+                        <td>59.325</td>
+                    </tr>
+                                    <tr>
+                        <td>9</td>
+                        <td>احمد حسين القاري</td>
+                        <td>موظف</td>
+                        <td>وكالة الوزارة للشؤون الادارية والمالية</td>
+                        <td>ذكر</td>
+                        <td>بكالوريوس</td>
+                        <td>المديرية العامة للتدريب والتاهيل</td>
+                        <td>15</td>
+                        <td>1987-01-01</td>
+                        <td>ماجستير</td>
+                        <td>هندسة تكنولوجيا المعلومات - شبكات</td>
+                        <td>59.325</td>
+                    </tr>
+                            </tbody>
+        </table>
+        
+            </div>
+</body>
+</html>
