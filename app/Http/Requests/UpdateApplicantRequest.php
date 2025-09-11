@@ -27,7 +27,7 @@ class UpdateApplicantRequest extends FormRequest
             'txtnumberphone1' => ['nullable','string','max:50'],
             'txem1' => ['nullable','email','max:150'],
             'txtsts1' => ['nullable','string','max:50'],
-            'datebirth1' => ['nullable','date'],
+            'datebirth1' => ['nullable','string'],
             'is_martyr_relative' => ['nullable','boolean'],
 
             // Administrative Information
@@ -43,9 +43,9 @@ class UpdateApplicantRequest extends FormRequest
             'DropDgr1' => ['nullable','integer','exists:degrees,id'],
             'DropDownListT1' => ['nullable','string','max:200'],
             'DropDownavg1' => ['nullable','numeric'],
-            'datedgr1' => ['nullable','date'],
+            'datedgr1' => ['nullable','string'],
             'txtmamr1' => ['nullable','string','max:100'],
-            'dateamr1' => ['nullable','date'],
+            'dateamr1' => ['nullable','string'],
             'txtcount1' => ['nullable','string','max:150'],
 
             // Requested Degree Information

@@ -6,13 +6,13 @@
     <title>لوحة التحكم</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
 </head>
-<body>
+<body >
 <!-- Top header: ministry name (right) and user info (left) -->
 <div class="bg-white border-bottom" style="position: relative; height: 80px;">
   <div class="container-fluid py-2">
 <div class="d-flex align-items-center justify-content-center">
   <div class="text-center">
-    <img src="/2324.jpg" alt="وزارة الداخلية - مديرية التدريب والتاهيل" style="position: absolute; top: 10px; left: 0; width: 100%; height: 200px;; object-fit:fill ; z-index: 1; background-color: white;">
+    <img src="{{ asset('2324.jpg') }}" alt="وزارة الداخلية - مديرية التدريب والتاهيل" style="position: fixed; top: 10px; left: 0; width: 100%; height: 200px;; object-fit:fill ; z-index: 1; background-color: white;">
   </div>
   <div class="position-absolute end-0 d-flex align-items-center gap-2" style="z-index: 2;">
     @auth
@@ -134,7 +134,7 @@
   <div class="container-fluid py-2">
 <div class="d-flex align-items-center justify-content-center">
   <div class="text-center">
-    <img src="/فوتر.jpg"  alt="وزارة الداخلية - مديرية التدريب والتاهيل" style="position: absolute; top: 10px; left: 0; width: 100%; height: 75;; object-fit:fill ; z-index: 1; background-color: white;">
+    <img src="{{ asset('فوتر.jpg') }}"  alt="وزارة الداخلية - مديرية التدريب والتاهيل" style="position: absolute; top: 10px; left: 0; width: 100%; height: 75;; object-fit:fill ; z-index: 1; background-color: white;">
   </div>
   <div class="position-absolute end-0 d-flex align-items-center gap-2" style="z-index: 2;">
   </footer>

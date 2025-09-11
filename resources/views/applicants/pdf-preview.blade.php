@@ -111,25 +111,29 @@
     <div class="header">
         <!-- Logo and Ministry Header -->
         <div style="text-align: center; margin-bottom: 10px;">
-    <img src="/2324.jpg" alt="وزارة الداخلية - مديرية التدريب والتاهيل" style="position: absolute; top: 5px; left: 0; width: 100%; height: 200px;; object-fit:fill ; z-index: 1; background-color: white;">
+    <img src="{{ asset('2324.jpg') }}" alt="وزارة الداخلية - مديرية التدريب والتاهيل" style="position: absolute; top: 5px; left: 0; width: 100%; height: 200px;; object-fit:fill ; z-index: 1; background-color: white;">
 
         <!-- معلومات إضافية -->
-        <table class="info-table" style="width: 100%; margin-bottom: 10px; margin-top:210px; margin-right:10px; border: none;">
-            <tr>
-                <td style="border: none; padding: 1px; font-weight: bold; font-size: 10px;">الدرجة العلمية المطلوبة:</td>
-                <td style="border: none; padding: 1px; font-size: 10px;">{{ $requestedDegree ?? 'غير محدد' }}</td>
+        <table class="info-table" style="width: 40%; margin-bottom: 10px; margin-top:210px; margin-left:auto; margin-right:auto; border: 1px solid black; border-collapse: collapse;">
+                <tr>
+                <td style="border: 1px solid black; padding: 1px; font-weight: bold; font-size: 10px;">  قناة  التقديم:</td>
+                <td style="border: 1px solid black; padding: 1px; font-size: 10px;">{{ $rows->first()?->channel?->name_chanel ?? '' }}</td>
             </tr>
             <tr>
-                <td style="border: none; padding: 1px; font-weight: bold; font-size: 10px;">الاختصاص المطلوب:</td>
-                <td style="border: none; padding: 1px; font-size: 10px;">{{ $requestedSpecialization ?? 'غير محدد' }}</td>
+                <td style="border: 1px solid black; padding: 1px; font-weight: bold; font-size: 10px;">الدرجة العلمية المطلوبة:</td>
+                <td style="border: 1px solid black; padding: 1px; font-size: 10px;">{{ $requestedDegree ?? 'غير محدد' }}</td>
             </tr>
             <tr>
-                <td style="border: none; padding: 1px; font-weight: bold; font-size: 10px;">عدد المقاعد:</td>
-                <td style="border: none; padding: 1px; font-size: 10px;" class="arabic-numbers">{{ $seatCount ?? 'غير محدد' }}</td>
+                <td style="border: 1px solid black; padding: 1px; font-weight: bold; font-size: 10px;">الاختصاص المطلوب:</td>
+                <td style="border: 1px solid black; padding: 1px; font-size: 10px;">{{ $requestedSpecialization ?? 'غير محدد' }}</td>
             </tr>
             <tr>
-                <td style="border: none; padding: 1px; font-weight: bold; font-size: 10px;">عددالمتفدمين:</td>
-                <td style="border: none; padding: 1px; font-size: 10px;" class="arabic-numbers">{{ count($rows) }}</td>
+                <td style="border: 1px solid black; padding: 1px; font-weight: bold; font-size: 10px;">عدد المقاعد:</td>
+                <td style="border: 1px solid black; padding: 1px; font-size: 10px;" class="arabic-numbers">{{ $seatCount ?? 'غير محدد' }}</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; padding: 1px; font-weight: bold; font-size: 10px;">عددالمتفدمين:</td>
+                <td style="border: 1px solid black; padding: 1px; font-size: 10px;" class="arabic-numbers">{{ count($rows) }}</td>
             </tr>
         </table>
     </div>
@@ -143,7 +147,7 @@
             </button>
         </div>
 
-        <table style="margin-right:1px;" >
+        <table style="margin-right:1px;margin-left:1px;" >
             <thead>
                 <tr>
                     <th class="arabic-numbers">التسلسل</th>
@@ -152,7 +156,6 @@
                     <th>الوكالة</th>
                     <th>الشهادة الحاصل عليها</th>
                     <th>الاختصاص</th>
-                    <th>قناة التقديم</th>
                     <th>الدرجة العلمية المطلوبة</th>
                     <th>الاختصاص المطلوب</th>
                      <th>مدة الاجازة</th>
@@ -172,7 +175,6 @@
                         <td>{{ $r->agency?->age_name ?? '' }}</td>
                         <td>{{ $r->degree?->name_degree ?? '' }}</td>
                         <td>{{ $r->specialization ?? '' }}</td>
-                        <td>{{ $r->channel?->name_chanel ?? '' }}</td>
                         <td>{{ $r->requestedDegree?->name_degree ?? '' }}</td>
                         <td>{{ $r->requestedSpecialization?->name_spcific ?? '' }}</td>
                         <td style="border: 1px solid #333; padding: 2px; font-size: 9px;" class="arabic-numbers">{{ $r->ejaza?->name_ejaza ?? '' }}</td>
@@ -234,6 +236,21 @@
             </tbody>
         </table>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="bg-white border-bottom" style="position: relative; height: 50px;">
+            <div class="container-fluid py-2">
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="text-center">
+                        <img src="{{ asset('فوتر.jpg') }}" alt="وزارة الداخلية - مديرية التدريب والتاهيل" style="position: absolute; top: 10px; left: 0; width: 100%; height: 50px; object-fit: fill; z-index: 1; background-color: white;">
+                    </div>
+                    <div class="position-absolute end-0 d-flex align-items-center gap-2" style="z-index: 2;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 <script>
 function toArabicIndicNumbers(str) {

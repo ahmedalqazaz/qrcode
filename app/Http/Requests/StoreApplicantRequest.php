@@ -29,7 +29,7 @@ class StoreApplicantRequest extends FormRequest
             'txem1' => ['nullable','email','max:150'],
             // marital status and birth date
             'txtsts1' => ['nullable','string','max:50'],
-            'datebirth1' => ['nullable','date'],
+            'datebirth1' => ['nullable','string'],
 
             // administrative
             'txtage1' => ['nullable','integer','exists:agencies,id'],
@@ -44,9 +44,9 @@ class StoreApplicantRequest extends FormRequest
             'DropDgr1' => ['nullable','integer','exists:degrees,id'],
             'DropDownListT1' => ['nullable','string','max:200'],
             'DropDownavg1' => ['nullable','numeric'],
-            'datedgr1' => ['nullable','date'],
+            'datedgr1' => ['nullable','string'],
             'txtmamr1' => ['nullable','string','max:100'],
-            'dateamr1' => ['nullable','date'],
+            'dateamr1' => ['nullable','string'],
             'txtcount1' => ['nullable','string','max:150'],
 
             // requested data
