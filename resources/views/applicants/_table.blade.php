@@ -1,5 +1,3 @@
-<!DOCTYPE html>
- <html lang="ar" dir="rtl">
 <table class="table table-striped">
     <thead>
         <tr>
@@ -44,7 +42,7 @@
                 <td>{{ $app->channel?->name_chanel }}</td>
                 <td class="arabic-numbers">{{ $app->average }}</td>
                 <td class="arabic-numbers">{{ $app->created_at->format('Y-m-d') }}</td>
-                <td>{{ $app->is_martyr_relative ? 'نعم' : 'لا' }}</td>
+                <td>{{ ($app->is_martyr_relative == 1 || $app->is_martyr_relative == '1' || $app->is_martyr_relative == 'نعم' || $app->is_martyr_relative == 'yes') ? 'نعم' : 'لا' }}</td>
                 <td>{{ $app->notes }}</td>
                 <td>
                     <div style="display: flex; gap: 5px; justify-content: center;">
@@ -125,6 +123,15 @@
                 const evt = new Event('refreshResults');
                 document.getElementById('filtersForm').dispatchEvent(evt);
             });
+        });
+
+        // Fix for checkbox visibility in RTL and Bootstrap 5
+        document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+            cb.style.width = '16px';
+            cb.style.height = '16px';
+            cb.style.margin = '0 auto';
+            cb.style.display = 'inline-block';
+            cb.style.verticalAlign = 'middle';
         });
     })();
 </script>

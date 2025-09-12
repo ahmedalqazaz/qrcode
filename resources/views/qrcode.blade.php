@@ -67,9 +67,11 @@
                         <select class="form-select" id="DropDownListrank1" name="DropDownListrank1" required>
                             <option value="">اختر الرتبة</option>
                             @foreach ($ranks as $rank)
-                                <option value="{{ $rank->id }}" {{ old('DropDownListrank1') == $rank->id ? 'selected' : '' }}>
-                                    {{ $rank->name_rank}}
-                                </option>
+                                @if ($rank)
+                                    <option value="{{ $rank->id }}" {{ old('DropDownListrank1') == $rank->id ? 'selected' : '' }}>
+                                        {{ $rank->name_rank}}
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
@@ -104,12 +106,14 @@
                     </div>
                     <div class="col-md-4">
                         <label for="DropDownListgender1" class="form-label">الجنس</label>
-                        <select id="DropDownListgender1" name="DropDownListgender1" class="form-select" required>
+                         <select id="DropDownListgender1" name="DropDownListgender1" class="form-select" required>
                           <option value="">اختر الجنس</option>
                                 @foreach ($genders as $gender)
-                                    <option value="{{ $gender->id }}" {{ old('DropDownListgender1') == $gender->id ? 'selected' : '' }}>
-                                        {{ $gender->name_gender}}
-                                    </option>
+                                    @if ($gender)
+                                        <option value="{{ $gender->id }}" {{ old('DropDownListgender1') == $gender->id ? 'selected' : '' }}>
+                                            {{ $gender->name_gender}}
+                                        </option>
+                                    @endif
                                 @endforeach
                          </select>
                     </div>
@@ -128,7 +132,7 @@
                     </div>
                     <div class="col-md-4">
                         <label for="datebirth1" class="form-label">تاريخ الميلاد</label>
-                        <input type="date" class="form-control" id="datebirth1" name="datebirth1" value="{{ old('datebirth1') }}" required>
+                        <input type="text" class="form-control" id="datebirth1" name="datebirth1" value="{{ old('datebirth1') }}" required>
                     </div>
                     <div class="col-md-4">
                         <label for="is_martyr_relative" class="form-label">ذوي الشهداء</label>
@@ -152,9 +156,11 @@
                         <select class="form-select" id="txtage1" name="txtage1" required>
                             <option value="">اختر الوكالة</option>
                                 @foreach ($agencis as $agency)
-                                    <option value="{{ $agency->id }}" {{ old('txtage1') == $agency->id ? 'selected' : '' }}>
-                                        {{ $agency->age_name}}
-                                    </option>
+                                    @if ($agency)
+                                        <option value="{{ $agency->id }}" {{ old('txtage1') == $agency->id ? 'selected' : '' }}>
+                                            {{ $agency->age_name}}
+                                        </option>
+                                    @endif
                                 @endforeach
                         </select>
                     </div>
@@ -193,9 +199,11 @@
                         <select id="DropDgr1" name="DropDgr1" class="form-select" required>
                             <option value="">اختر الشهادة الحاصل عليها</option>
                             @foreach ($degrees as $degree)
-                                <option value="{{ $degree->id }}" {{ old('DropDgr1') == $degree->id ? 'selected' : '' }}>
-                                    {{ $degree->name_degree}}
-                                </option>
+                                @if ($degree)
+                                    <option value="{{ $degree->id }}" {{ old('DropDgr1') == $degree->id ? 'selected' : '' }}>
+                                        {{ $degree->name_degree}}
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
@@ -210,7 +218,7 @@
                     </div>
                     <div class="col-md-4">
                         <label for="datedgr1" class="form-label">تاريخ التخرج</label>
-                        <input type="date" class="form-control" id="datedgr1" name="datedgr1" value="{{ old('datedgr1') }}" required>
+                        <input type="text" class="form-control" id="datedgr1" name="datedgr1" value="{{ old('datedgr1') }}" required>
                     </div>
                     <div class="col-md-4">
                         <label for="txtmamr1" class="form-label">رقم الامر الاداري لمنح شهادة الماجستير</label>
@@ -219,7 +227,7 @@
 
                     <div class="col-md-4">
                         <label for="dateamr1" class="form-label">تاريخ الامر الجامعي</label>
-                        <input type="date" class="form-control" id="dateamr1" name="dateamr1" value="{{ old('dateamr1') }}">
+                        <input type="text" class="form-control" id="dateamr1" name="dateamr1" value="{{ old('dateamr1') }}">
                     </div>
                     <div class="col-md-4">
                         <label for="txtcount1" class="form-label">الدولة المانحة للشهادة</label>
@@ -236,9 +244,11 @@
                          <select id="DropDownListplceA1" name="DropDownListplceA1" class="form-select" required>
                             <option value="">اختر الدرجة العلمية المطلوبة</option>
                              @foreach ($degreess as $degree)
+                                @if ($degree)
                                     <option value="{{ $degree->id }}" {{ old('DropDownListplceA1') == $degree->id ? 'selected' : '' }}>
                                         {{ $degree->name_degree}}
                                     </option>
+                                @endif
                                 @endforeach
                             </select>
                     </div>
@@ -247,20 +257,24 @@
                         <select id="FirstDropdown1" name="FirstDropdown1" class="form-select" required >
                             <option value="">اختر قناة التقديم</option>
                               @foreach ($chanels as $chanel)
+                                @if ($chanel)
                                     <option value="{{ $chanel->id }}" {{ old('FirstDropdown1') == $chanel->id ? 'selected' : '' }}>
                                         {{ $chanel->name_chanel}}
                                     </option>
+                                @endif
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-md-4">
                             <label for="SecondDropdown1" class="form-label">الاختصاص</label>
-                            <Select id="SecondDropdown1" name="SecondDropdown1" class="form-select" required >
+                          <Select id="SecondDropdown1" name="SecondDropdown1" class="form-select" required >
                           <option value="">اختر الاختصاص</option>
                               @foreach ($spcifics as $spcific)
+                                @if ($spcific)
                                     <option value="{{ $spcific->id }}" {{ old('SecondDropdown1') == $spcific->id ? 'selected' : '' }}>
                                         {{ $spcific->name_spcific}}
                                     </option>
+                                @endif
                                 @endforeach
                             </select>
                         </div>
@@ -282,11 +296,13 @@
                         <select id="datemoda1" name="datemoda1" class="form-select" required >
                             <option value="">اختر مدة الاجازة</option>
                               @foreach ($ejazas as $ejaza)
+                                @if ($ejaza)
                                     <option value="{{ $ejaza->id }}" {{ old('datemoda1') == $ejaza->id ? 'selected' : '' }}>
                                         {{ $ejaza->name_ejaza}}
                                     </option>
+                                @endif
                                 @endforeach
-                            </select>
+                        </select>
                     </div>
 
 

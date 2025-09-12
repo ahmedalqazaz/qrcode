@@ -56,7 +56,7 @@ class DataController extends Controller
         $filterRequestedDegree = $request->input('DropDownListplceA1');
 
         $query = Applicant::with(['rank','gender','agency','degree','requestedDegree','requestedSpecialization','channel','ejaza'])
-            ->select(['id','first_name','second_name','last_name','rank_id','gender_id','agency_id','degree_id','specialization','directorate','requested_degree_id','requested_specialization','average','channel_id','ejaza_id','created_at','notes']);
+            ->select(['id','first_name','second_name','last_name','rank_id','gender_id','agency_id','degree_id','specialization','directorate','requested_degree_id','requested_specialization','average','channel_id','ejaza_id','created_at','is_martyr_relative','notes']);
 
         if ($q) {
             $query->where(function($sub) use ($q) {
@@ -139,6 +139,11 @@ class DataController extends Controller
     {
         $validated = $request->validated();
 
+        // For date fields, accept raw input as is from the form
+        $birthDate = $request->input('datebirth1');
+        $graduationDate = $request->input('datedgr1');
+        $adminOrderDate = $request->input('dateamr1');
+
         $data = [
             'rank_id' => $validated['DropDownListrank1'] ?? null,
             'first_name' => $validated['txtname11'] ?? null,
@@ -152,7 +157,7 @@ class DataController extends Controller
             'phone_number' => $validated['txtnumberphone1'] ?? null,
             'email' => $validated['txem1'] ?? null,
             'marital_status' => $validated['txtsts1'] ?? null,
-            'birth_date' => $validated['datebirth1'] ?? null,
+            'birth_date' => $birthDate,
             'agency_id' => $validated['txtage1'] ?? null,
             'directorate' => $validated['txtgen1'] ?? null,
             'department' => $validated['txtdir1'] ?? null,
@@ -163,9 +168,9 @@ class DataController extends Controller
             'degree_id' => $validated['DropDgr1'] ?? null,
             'specialization' => $validated['DropDownListT1'] ?? null,
             'average' => $validated['DropDownavg1'] ?? null,
-            'graduation_date' => $validated['datedgr1'] ?? null,
+            'graduation_date' => $graduationDate,
             'admin_order_number' => $validated['txtmamr1'] ?? null,
-            'admin_order_date' => $validated['dateamr1'] ?? null,
+            'admin_order_date' => $adminOrderDate,
             'degree_country' => $validated['txtcount1'] ?? null,
             'requested_degree_id' => $validated['DropDownListplceA1'] ?? null,
             'channel_id' => $validated['FirstDropdown1'] ?? null,
@@ -604,6 +609,11 @@ class DataController extends Controller
         if ($request->has('save')) {
             $validated = $request->validated();
 
+            // For date fields, accept raw input as is from the form
+            $birthDate = $request->input('datebirth1');
+            $graduationDate = $request->input('datedgr1');
+            $adminOrderDate = $request->input('dateamr1');
+
             $data = [
                 'rank_id' => $validated['DropDownListrank1'] ?? null,
                 'first_name' => $validated['txtname11'] ?? null,
@@ -617,7 +627,7 @@ class DataController extends Controller
                 'phone_number' => $validated['txtnumberphone1'] ?? null,
                 'email' => $validated['txem1'] ?? null,
                 'marital_status' => $validated['txtsts1'] ?? null,
-                'birth_date' => $validated['datebirth1'] ?? null,
+                'birth_date' => $birthDate,
                 'agency_id' => $validated['txtage1'] ?? null,
                 'directorate' => $validated['txtgen1'] ?? null,
                 'department' => $validated['txtdir1'] ?? null,
@@ -628,9 +638,9 @@ class DataController extends Controller
                 'degree_id' => $validated['DropDgr1'] ?? null,
                 'specialization' => $validated['DropDownListT1'] ?? null,
                 'average' => $validated['DropDownavg1'] ?? null,
-                'graduation_date' => $validated['datedgr1'] ?? null,
+                'graduation_date' => $graduationDate,
                 'admin_order_number' => $validated['txtmamr1'] ?? null,
-                'admin_order_date' => $validated['dateamr1'] ?? null,
+                'admin_order_date' => $adminOrderDate,
                 'degree_country' => $validated['txtcount1'] ?? null,
                 'requested_degree_id' => $validated['DropDownListplceA1'] ?? null,
                 'channel_id' => $validated['FirstDropdown1'] ?? null,
@@ -672,7 +682,7 @@ class DataController extends Controller
         $decodeddgrmaName = base64_decode($parts[27] ?? '');
         $degreem = Degree::where('name_degree', $decodeddgrmaName)->first();
         $decodedspfmaName = base64_decode($parts[33] ?? '');
-        $spcific=Spcific::where('code_spcific', $decodedspfmaName)->first();
+        $spcific=Spcific::where('name_spcific', $decodedspfmaName)->first();
 
         return back()->withInput([
             'DropDownListrank1'   => $rank?->id,
