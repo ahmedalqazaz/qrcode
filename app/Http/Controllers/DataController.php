@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Rank;
@@ -41,7 +40,7 @@ class DataController extends Controller
     // list and search applicants
     public function index(Request $request)
     {
-        // validate filters
+        /** @var Request $request */
         $validated = $request->validate([
             'q' => ['nullable','string','max:100'],
             'FirstDropdown1' => ['nullable','integer','exists:chanels,id'],
@@ -50,10 +49,10 @@ class DataController extends Controller
             'sort' => ['nullable','string','in:average_asc,average_desc'],
         ]);
 
-        $q = $request->input('q');
-        $filterChannel = $request->input('FirstDropdown1');
-        $filterSpecialization = $request->input('SecondDropdown1');
-        $filterRequestedDegree = $request->input('DropDownListplceA1');
+        $q = $request->get('q');
+        $filterChannel = $request->get('FirstDropdown1');
+        $filterSpecialization = $request->get('SecondDropdown1');
+        $filterRequestedDegree = $request->get('DropDownListplceA1');
 
         $query = Applicant::with(['rank','gender','agency','degree','requestedDegree','requestedSpecialization','channel','ejaza'])
             ->select(['id','first_name','second_name','last_name','rank_id','gender_id','agency_id','degree_id','specialization','directorate','requested_degree_id','requested_specialization','average','channel_id','ejaza_id','created_at','is_martyr_relative','notes']);
@@ -135,8 +134,9 @@ class DataController extends Controller
         return view('applicants.edit', compact('applicant','ranks','agencis','genders','degrees','degreess','ejazas','chanels','spcifics'));
     }
 
-    public function update(\App\Http\Requests\UpdateApplicantRequest $request, Applicant $applicant)
+    public function update(UpdateApplicantRequest $request, Applicant $applicant)
     {
+        /** @var UpdateApplicantRequest $request */
         $validated = $request->validated();
 
         // For date fields, accept raw input as is from the form
@@ -212,7 +212,7 @@ class DataController extends Controller
         $query = Applicant::with(['rank','agency','degree','requestedDegree','requestedSpecialization'])
             ->select(['id','first_name','second_name','last_name','rank_id','agency_id','degree_id','specialization','requested_degree_id','requested_specialization','average','created_at','is_martyr_relative','notes']);
         // apply same filters as index
-        if ($q = $request->input('q')) {
+        if ($q = $request->get('q')) {
             $query->where(function($sub) use ($q) {
                 $sub->where('first_name', 'like', "%{$q}%")
                     ->orWhere('second_name', 'like', "%{$q}%")
@@ -228,18 +228,18 @@ class DataController extends Controller
                 }
             });
         }
-        if ($channel = $request->input('FirstDropdown1')) {
+        if ($channel = $request->get('FirstDropdown1')) {
             $query->where('channel_id', $channel);
         }
-        if ($rd = $request->input('DropDownListplceA1')) {
+        if ($rd = $request->get('DropDownListplceA1')) {
             $query->where('requested_degree_id', $rd);
         }
-        if ($spec = $request->input('SecondDropdown1')) {
+        if ($spec = $request->get('SecondDropdown1')) {
             $query->where('requested_specialization', $spec);
         }
 
         // New filter for is_martyr_relative
-        $filterMartyr = $request->input('is_martyr_relative');
+        $filterMartyr = $request->get('is_martyr_relative');
         if ($filterMartyr) {
             $query->where('is_martyr_relative', true);
         }
@@ -292,7 +292,7 @@ class DataController extends Controller
 
         // Build same query as export
         $query = Applicant::query();
-        $q = $request->input('q');
+        $q = $request->get('q');
         if ($q) {
             $query->where(function($sub) use ($q) {
                 $sub->where('first_name', 'like', "%{$q}%")
@@ -309,18 +309,18 @@ class DataController extends Controller
                 }
             });
         }
-        if ($channel = $request->input('FirstDropdown1')) {
+        if ($channel = $request->get('FirstDropdown1')) {
             $query->where('channel_id', $channel);
         }
-        if ($rd = $request->input('DropDownListplceA1')) {
+        if ($rd = $request->get('DropDownListplceA1')) {
             $query->where('requested_degree_id', $rd);
         }
-        if ($spec = $request->input('SecondDropdown1')) {
+        if ($spec = $request->get('SecondDropdown1')) {
             $query->where('requested_specialization', $spec);
         }
 
         // New filter for is_martyr_relative
-        $filterMartyr = $request->input('is_martyr_relative');
+        $filterMartyr = $request->get('is_martyr_relative');
         if ($filterMartyr) {
             $query->where('is_martyr_relative', true);
         }
@@ -352,7 +352,7 @@ class DataController extends Controller
             $degree = Degree::find($filterRequestedDegree);
             $chanel = Chanel::find($filterChannel);
             if ($degree && $chanel) {
-                \Log::info('pdfPreview seat count query:', [
+                Log::info('pdfPreview seat count query:', [
                     'requested_specialization' => $filterSpecialization,
                     'code_degree' => $degree->code_degree,
                     'code_chanal' => $chanel->code_chanal,
@@ -361,10 +361,10 @@ class DataController extends Controller
                     ->where('code_degree', $degree->code_degree)
                     ->where('code_chanal', $chanel->code_chanal)
                     ->first();
-                \Log::info('pdfPreview spcific result:', ['spcific' => $spcific, 'seat_count' => $spcific ? $spcific->seat_count : null]);
+                Log::info('pdfPreview spcific result:', ['spcific' => $spcific, 'seat_count' => $spcific ? $spcific->seat_count : null]);
                 $seatCount = $spcific ? $spcific->seat_count : 'غير محدد';
             } else {
-                \Log::info('pdfPreview degree or chanel not found:', ['degree' => $degree, 'chanel' => $chanel]);
+                Log::info('pdfPreview degree or chanel not found:', ['degree' => $degree, 'chanel' => $chanel]);
                 $seatCount = 'غير محدد';
             }
         } else {
@@ -605,13 +605,13 @@ class DataController extends Controller
     {
         // Assume you already split the input into $parts[]
         // log full incoming payload to help debug missing values
-
+             /** @var Request $request */
         if ($request->has('save')) {
             $validated = $request->validated();
 
             // For date fields, accept raw input as is from the form
-            $birthDate = $request->input('datebirth1');
-            $graduationDate = $request->input('datedgr1');
+            $birthDate = $request->get('datebirth1');
+            $graduationDate = $request->get('datedgr1');
             $adminOrderDate = $request->input('dateamr1');
 
             $data = [
