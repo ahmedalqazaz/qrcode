@@ -42,7 +42,11 @@
                 <td>{{ $app->channel?->name_chanel }}</td>
                 <td class="arabic-numbers">{{ $app->average }}</td>
                 <td class="arabic-numbers">{{ $app->created_at->format('Y-m-d') }}</td>
+
                 <td>{{ ($app->is_martyr_relative == 1 || $app->is_martyr_relative == '1' || $app->is_martyr_relative == 'نعم' || $app->is_martyr_relative == 'yes') ? 'نعم' : 'لا' }}</td>
+
+                <td>{{ $app->is_martyr_relative}}</td>
+
                 <td>{{ $app->notes }}</td>
                 <td>
                     <div style="display: flex; gap: 5px; justify-content: center;">
